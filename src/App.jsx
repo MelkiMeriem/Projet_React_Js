@@ -4,7 +4,9 @@ import './globals.css';
 import {CovoiturageDetails} from "./Components/CovoiturageDetails.jsx";
 import {useState} from "react";
 import AboutSection from "./Components/AboutSection.jsx";
+import {Link, useNavigate} from "react-router-dom";
 function App() {
+    const navigate=useNavigate();
     const [Users,setUsers]=useState(
         [
             {UserId:1,
@@ -44,14 +46,15 @@ function App() {
         <nav className={"hp"}>
             <img src={"./src/assets/car-toy.gif"} className={"bg"}/> <br/>
 
-            <button className={"btnbg" }>Lancer la Recherche</button>
-
+            <div className={"btnapp"}>
+            <a href={"#section"} className={"btnbg"}> Lancer la Recherche</a>
+            </div>
         </nav>
               <hr/>
-        <div className={"ds"}>
-        <section className={"section"}>
+         <div className={"ds"}>
+        <section className={"section"} id={"section"}>
             {Covoiturages.map((Covoiturage)=>(<CovoiturageDetails key={Covoiturage.id }  Covoiturage={Covoiturage}/>))}
-        </section>
+          </section>
            <footer>
             <AboutSection/>
            </footer>

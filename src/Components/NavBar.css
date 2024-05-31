@@ -1,0 +1,21 @@
+.li{
+    text-decoration: none;
+    color: grey;
+    margin-right: 3%;
+    width: 15vw;
+    padding: 3%;
+
+}
+.li:hover{
+    color: black;
+    background-color: rgba(228, 141, 151, 0.22);
+
+}
+
+.li:focus-within{
+    color: black;
+}
+#basic-navbar-nav{
+    width: 70%;
+    margin-left: 15%;
+}

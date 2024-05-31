@@ -6,9 +6,9 @@
 
 }
 .bg{
-    width: 16%;
+    width: 14%;
     margin-left:42% ;
-    margin-top: 10%;
+    margin-top: 3%;
     border-radius: 50%;
 
 }
@@ -16,17 +16,21 @@ hr{
     color: white;}
 
 .btnbg{
-    width: 20%;
-    margin-left:40% ;
-    margin-top: 10%;
-    font-size: 20px;
-    padding: 5px;
-    border: none;
-    background-color: #e48d97;
+
     color: white;
+    text-decoration: none;
 
-
-
+}
+.btnapp{
+    color: white;
+    border: none;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 20vh;
+    background-color: #e48d97;
+    text-decoration: none;
+    padding: 13px;
+    text-align: center;
 }
 .icone{
 
