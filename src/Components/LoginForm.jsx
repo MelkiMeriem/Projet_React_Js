@@ -4,14 +4,27 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import {useContext, useState} from "react";
 import {UserContext} from "../utils/contexts/UserContext.jsx";
+import loginPage from "../Pages/LoginPage.jsx";
 
 function LoginForm(){
+    const [LoginData,setLoginData]=useState({
+        email:"",
+        password:"",
+    })
 
 
     return(
 
         <>
-            < form className={"R_Form"}>
+            < form className={"R_Form"}
+                   onClick={
+                       (e)=>{
+                           e.preventDefault();
+                           console.log(LoginData);
+
+                       }
+                   }
+            >
                 <legend>Login</legend>
 
 
@@ -22,6 +35,10 @@ function LoginForm(){
                         type={"email"}
                         aria-label="Small"
                         aria-describedby="inputGroup-sizing-sm"
+                        value={LoginData.email}
+                        onChange={(e)=>{
+                           setLoginData( (currentState)=>({...currentState,email:e.target.value}))
+                        }}
 
                     />
                 </InputGroup>
@@ -32,6 +49,10 @@ function LoginForm(){
                         type={"password"}
                         aria-label="Small"
                         aria-describedby="inputGroup-sizing-sm"
+                        value={LoginData.password}
+                        onChange={(e)=>{
+                          setLoginData(  (currentState)=>({...currentState,password:e.target.value}))
+                        }}
                     />
 
                 </InputGroup>

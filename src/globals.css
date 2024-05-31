@@ -17,20 +17,22 @@ hr{
 
 .btnbg{
 
-    color: white;
+    color: black;
     text-decoration: none;
 
 }
 .btnapp{
-    color: white;
+    color: black;
     border: none;
     width: 30%;
     margin-left: 35%;
     margin-top: 20vh;
-    background-color: #e48d97;
+    background-color: white;
+
     text-decoration: none;
     padding: 13px;
     text-align: center;
+    border-radius: 5%;
 }
 .icone{
 
@@ -48,4 +50,5 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     backface-visibility : inherit;
+    color: black;
 }

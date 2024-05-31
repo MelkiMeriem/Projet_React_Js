@@ -2,11 +2,11 @@ import "./Form.css"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function registerForm(){
     const [user,setUser]=useState({
-        id:0,
         nom:"",
         prenom:"",
         email:"",
@@ -14,9 +14,11 @@ function registerForm(){
         age:0,
         Region:0,
         statut_social:"",
+        gender:"",
     });
 
     const regions = [
+        { id: 0, name: 'Région' },
         { id: 1, name: 'Ariana' },
         { id: 2, name: 'Béja' },
         { id: 3, name: 'Ben Arous' },
@@ -42,13 +44,20 @@ function registerForm(){
         { id: 23, name: 'Tunis' },
         { id: 24, name: 'Zaghouan' }
     ];
+    const navigate=useNavigate();
     const SelectRegion = () => {
         return (
 
 
-            <Form.Select size="sm">
+            <Form.Select size="sm"
+                         onChange={(e)=>{
+                             setUser((currentState)=>({...currentState,Region:e.target.value}));
+                         }}
+            >
                 {regions.map(region => (
-                    <option key={region.id} value={region.name} id={`region-${region.id}`} name={region.name}>
+                    <option key={region.name} value={region.name} id={`region-${region.id}`} name={region.name}
+
+                    >
                         {region.name}
                     </option>
                 ))}
@@ -58,7 +67,23 @@ function registerForm(){
 return(
 
         <>
-            < form className={"R_Form"}>
+            < form className={"R_Form"} method={"POST"}
+                   onSubmit={
+                       (e)=>{
+                           e.preventDefault();
+
+                               fetch("http://localhost:3000/users",{
+                                   method:'POST',
+                                   body:JSON.stringify(user),
+                                   headers:{  'Content-type': 'application/json; charset=UTF-8',}
+                               }).then((response)=>response.json())
+                                   .then((json)=>console.log(json));
+                               navigate("/")
+
+
+                       }
+                   }
+            >
                 <legend>Register</legend>
 
                 <InputGroup size="sm" className="mb-3">
@@ -87,6 +112,29 @@ return(
 
                     />
                 </InputGroup>
+
+                <Form.Check
+
+                    type="radio"
+                    label={"Femme"}
+                    name={'rad'}
+                    value={'f'}
+                    id={`disabled-default-radio`}
+                    onClick={(e)=>{
+                        setUser((currentState)=>({...currentState,gender:e.target.value}));
+                    }}
+                />
+                <Form.Check
+
+                    type="radio"
+                    name={"rad"}
+                    label={"Homme"}
+                    value={'h'}
+                    id={`disabled-default-radio`}
+                    onChange={(e)=>{
+                        setUser((currentState)=>({...currentState,gender:e.target.value}));
+                    }}
+                />
 
                 <InputGroup size="sm" className="mb-3">
                     <InputGroup.Text id="inputGroup-sizing-sm">Email</InputGroup.Text>
@@ -127,7 +175,9 @@ return(
                     />
                 </InputGroup>
                 <label>Région : </label> <br/>
-                {SelectRegion()}<br/>
+                {SelectRegion()}
+
+                <br/>
 
                 <InputGroup size="sm" className="mb-3">
                     <InputGroup.Text id="inputGroup-sizing-sm">Statut social</InputGroup.Text>
