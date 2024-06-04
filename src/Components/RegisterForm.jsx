@@ -78,7 +78,7 @@ return(
                                    headers:{  'Content-type': 'application/json; charset=UTF-8',}
                                }).then((response)=>response.json())
                                    .then((json)=>console.log(json));
-                               navigate("/")
+                               navigate("/Covoiturage")
 
 
                        }

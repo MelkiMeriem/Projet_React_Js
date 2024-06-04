@@ -10,6 +10,4 @@ export const UserContext=createContext({
     Region:0,
     statut_social:"",
 
-
-
 })

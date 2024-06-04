@@ -2,28 +2,74 @@ import "./Form.css"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {isItem} from "json-server/lib/service.js";
+import {useNavigate} from "react-router-dom";
 import {UserContext} from "../utils/contexts/UserContext.jsx";
-import loginPage from "../Pages/LoginPage.jsx";
+import CovoiturageForm from "./CovoiturageForm.jsx";
+import Covoiturage from "../Pages/Covoiturage.jsx";
 
 function LoginForm(){
+
+
+    const userContext=useContext(UserContext);
+    const navigate=useNavigate();
+
+    const [Users,setUsers]=useState([{}]);
+    useEffect(()=>{
+        fetch('http://localhost:3000/users',
+            {
+                method:"GET",
+            }).then((response)=>{return response.json()})
+            .then((data)=> {
+                setUsers(data);
+            });
+    })
+
     const [LoginData,setLoginData]=useState({
         email:"",
         password:"",
     })
+    function search(LoginData,Users){
+        for(let i = 0; i<Users.length; i++){
+            if(Users[i].email==LoginData.email && Users[i].password==LoginData.password){
+                console.log(LoginData);
+                return true;
+            }
+
+
+        }
+        return false;
+
+    }
 
 
     return(
 
         <>
+            <>
+            </>
             < form className={"R_Form"}
-                   onClick={
-                       (e)=>{
+                   method={"GET"}
+                   onSubmit={
+                       (e)=> {
                            e.preventDefault();
-                           console.log(LoginData);
+                           if(search(LoginData,Users)){
+                               userContext.email=LoginData.email;
+                               navigate('/Covoiturage');
+                               <UserContext.Provider value={LoginData}>
+                                   <CovoiturageForm/>
+                                   <Covoiturage/>
+                               </UserContext.Provider>
+
+
+
 
                        }
-                   }
+
+                       }
+
+            }
             >
                 <legend>Login</legend>
 
@@ -32,6 +78,7 @@ function LoginForm(){
                 <InputGroup size="sm" className="mb-3">
                     <InputGroup.Text id="inputGroup-sizing-sm">Email</InputGroup.Text>
                     <Form.Control
+                        required isInvalid
                         type={"email"}
                         aria-label="Small"
                         aria-describedby="inputGroup-sizing-sm"
@@ -43,9 +90,10 @@ function LoginForm(){
                     />
                 </InputGroup>
 
-                <InputGroup size="sm" className="mb-3" >
+                <InputGroup size="sm" className="mb-3" hasValidation >
                     <InputGroup.Text id="inputGroup-sizing-sm" >Mot de passe </InputGroup.Text>
                     <Form.Control
+                        required isInvalid
                         type={"password"}
                         aria-label="Small"
                         aria-describedby="inputGroup-sizing-sm"
@@ -54,6 +102,7 @@ function LoginForm(){
                           setLoginData(  (currentState)=>({...currentState,password:e.target.value}))
                         }}
                     />
+
 
                 </InputGroup>
 
@@ -68,8 +117,10 @@ function LoginForm(){
 
 
             </form>
+
         </>
     )
+
 }
 
 export default LoginForm;

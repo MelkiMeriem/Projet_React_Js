@@ -4,6 +4,7 @@ import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Registration from "./Pages/Registration.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
+import Covoiturage from "./Pages/Covoiturage.jsx";
 
 const Route=createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const Route=createBrowserRouter([
     {
         path:'/Login',
         element:<LoginPage/>,
+    },
+    {
+        path:'/Covoiturage',
+        element:<Covoiturage/>,
     }
 ])
 

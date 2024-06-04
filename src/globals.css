@@ -33,10 +33,13 @@ hr{
     padding: 13px;
     text-align: center;
     border-radius: 5%;
+    display: inline-block;
+
+
 }
 .icone{
 
-        border-radius: 50%;
+    border-radius: 50%;
     height: 200px;
     width: 30%;
 
@@ -51,4 +54,8 @@ body{
     background-attachment: fixed;
     backface-visibility : inherit;
     color: black;
+}
+#section1,#section2{
+    width: 98vw;
+    height: 98vh;
 }
