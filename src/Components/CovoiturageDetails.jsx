@@ -35,7 +35,6 @@ export function CovoiturageDetails({ itemsPerPage }) {
     // (This could be items from props; or items loaded in a local state
     // from an API endpoint with useEffect and useState)
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     const currentItems = Covoiturages.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(Covoiturages.length / itemsPerPage);
 
@@ -43,9 +42,6 @@ export function CovoiturageDetails({ itemsPerPage }) {
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % Covoiturages.length;
-        console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
         setItemOffset(newOffset);
     };
     useEffect(()=>{
@@ -61,6 +57,7 @@ export function CovoiturageDetails({ itemsPerPage }) {
     return (
         <>
             <Items currentItems={currentItems} />
+            <div >
             <ReactPaginate
                 breakLabel="..."
                 nextLabel="next >"
@@ -69,8 +66,13 @@ export function CovoiturageDetails({ itemsPerPage }) {
                 pageCount={pageCount}
                 previousLabel="< previous"
                 renderOnZeroPageCount={null}
-                className={"pag"}
+                containerClassName={'pagination'} /* as this work same as bootstrap class */
+                subContainerClassName={'pages pagination'} /* as this work same as bootstrap class */
+                activeClassName={'active'}
+
+
             />
+            </div>
         </>
     );
 
