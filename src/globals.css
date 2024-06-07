@@ -55,7 +55,25 @@ body{
     backface-visibility : inherit;
     color: black;
 }
-#section1,#section2{
+#section2{
     width: 98vw;
     height: 98vh;
+
+
+}
+.listCov{
+    display: inline-block;
+    margin-right: 4%;
+    margin-top: 2%;
+
+}
+.Card{
+
+
+}
+#section1{
+    padding-left: 10%;
+}
+.pag{
+    background-color:lightblue;
 }

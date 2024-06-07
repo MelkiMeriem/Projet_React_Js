@@ -33,7 +33,6 @@ function LoginForm(){
     function search(LoginData,Users){
         for(let i = 0; i<Users.length; i++){
             if(Users[i].email==LoginData.email && Users[i].password==LoginData.password){
-                console.log(LoginData);
                 return true;
             }
 
@@ -56,20 +55,22 @@ function LoginForm(){
                            e.preventDefault();
                            if(search(LoginData,Users)){
                                userContext.email=LoginData.email;
-                               navigate('/Covoiturage');
-                               <UserContext.Provider value={LoginData}>
+                               <UserContext.Provider value={userContext}>
                                    <CovoiturageForm/>
                                    <Covoiturage/>
                                </UserContext.Provider>
 
+                               navigate('/Covoiturage');
 
 
+
+
+
+                           }
 
                        }
 
-                       }
-
-            }
+                   }
             >
                 <legend>Login</legend>
 
@@ -84,7 +85,7 @@ function LoginForm(){
                         aria-describedby="inputGroup-sizing-sm"
                         value={LoginData.email}
                         onChange={(e)=>{
-                           setLoginData( (currentState)=>({...currentState,email:e.target.value}))
+                            setLoginData( (currentState)=>({...currentState,email:e.target.value}))
                         }}
 
                     />
@@ -99,7 +100,7 @@ function LoginForm(){
                         aria-describedby="inputGroup-sizing-sm"
                         value={LoginData.password}
                         onChange={(e)=>{
-                          setLoginData(  (currentState)=>({...currentState,password:e.target.value}))
+                            setLoginData(  (currentState)=>({...currentState,password:e.target.value}))
                         }}
                     />
 

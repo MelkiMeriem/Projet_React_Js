@@ -4,6 +4,8 @@ import {useContext, useState} from "react";
 import Button from "react-bootstrap/Button";
 import {UserContext} from "../utils/contexts/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
+import {CovoiturageContext} from "../utils/contexts/CovoiturageContext.jsx";
+import {CovoiturageDetails} from "./CovoiturageDetails.jsx";
 
 function CovoiturageForm(){
     const [quotidien,setQuotidien]=useState(false);
@@ -23,10 +25,13 @@ function CovoiturageForm(){
         OwnerEmail:"",
     });
     const userContext=useContext(UserContext);
+    const covoiturageContext=useContext(CovoiturageContext);
     formField.OwnerEmail=userContext.email;
     const navigate=useNavigate();
 
-
+    <CovoiturageContext.Provider value={formField}>
+        <CovoiturageDetails/>
+    </CovoiturageContext.Provider>
     return(
         <>
             <form className= {"R_Form"} method={"POST"}
@@ -39,8 +44,10 @@ function CovoiturageForm(){
                                   body:JSON.stringify(formField),
                                   headers:{ 'Content-type': 'application/json; charset=UTF-8',}
                               }).then((response)=>{
-                                  response.json()
+                              response.json()
                           });
+
+
 
                       }
                   }
@@ -276,4 +283,4 @@ function CovoiturageForm(){
     )
 }
 
-export default CovoiturageForm
+export default CovoiturageForm;

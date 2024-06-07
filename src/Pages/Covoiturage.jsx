@@ -1,6 +1,7 @@
 import {NavBar2} from "../Components/NavBar2.jsx";
 import {CovoiturageDetails} from "../Components/CovoiturageDetails.jsx";
 import Proposer_Covoiturage from "./Proposer_Covoiturage.jsx";
+import AboutSection from "../Components/AboutSection.jsx";
 
 function Covoiturage(){
 return(
@@ -24,12 +25,15 @@ return(
 
         </nav>
         <div id={"section1"}>
-            <CovoiturageDetails />
+            <CovoiturageDetails itemsPerPage={6} />
         </div>
         <div id={"section2"}>
             <Proposer_Covoiturage />
 
         </div>
+        <footer>
+            <AboutSection/>
+        </footer>
     </>
 )
 }
