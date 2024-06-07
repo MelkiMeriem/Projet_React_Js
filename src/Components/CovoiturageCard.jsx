@@ -19,9 +19,11 @@ function CovoiturageCard({details}) {
                     </p>}
                 </Card.Subtitle>
                 <Card.Text>
-                    Heure départ : {details.heureDepart}
-                    {details.AllerEtRetour && <p>  Heure Retour : {details.heureRetour}</p>}
-                    Nombre des places disponibles :{details.NbrePlace}
+                    Heure départ : {details.heureDepart  }
+                <br/>
+                    {details.AllerEtRetour && <span>  Heure Retour : {details.heureRetour}</span>}
+                    Nombre des places disponibles :{details.NbrePlace} <br/>
+                    Propsé par : {details.OwnerName}
 
 
 
@@ -52,6 +54,8 @@ function CovoiturageCard({details}) {
                 JourFin:PropTypes.string,
                 DateDébut:PropTypes.string,
                 OwnerEmail:PropTypes.string,
+            OwnerName:PropTypes.string,
+
             }
         )}
 }

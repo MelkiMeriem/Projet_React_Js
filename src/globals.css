@@ -55,12 +55,7 @@ body{
     backface-visibility : inherit;
     color: black;
 }
-#section2,#section1{
-    width: 98vw;
-    height: 98vh;
 
-
-}
 .listCov{
     display: inline-block;
     margin-right: 4%;

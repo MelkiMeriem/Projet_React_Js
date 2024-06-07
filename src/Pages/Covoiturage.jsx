@@ -14,10 +14,7 @@ return(
             <img src={"./src/assets/car-toy.gif"} className={"bg"}/> <br/>
             <div className={"choix"}>
 
-            <div className={"btnapp"}>
-                <a href={"#section2"} className={"btnbg"}> Proposer Votre Propre Covoiturage</a>
-
-            </div>
+           
             <div className={"btnapp"} id={"2nd"}>
                 <a href={"#section1"} className={"btnbg nd "}> Chercher Un Covoiturage</a>
             </div>
@@ -27,10 +24,7 @@ return(
         <div id={"section1"}>
             <CovoiturageDetails itemsPerPage={6} />
         </div>
-        <div id={"section2"}>
-            <Proposer_Covoiturage />
 
-        </div>
         <footer>
             <AboutSection/>
         </footer>

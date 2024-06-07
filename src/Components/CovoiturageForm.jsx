@@ -23,10 +23,12 @@ function CovoiturageForm(){
         JourFin:"",
         DateDébut:"",
         OwnerEmail:"",
+        OwnerName:"",
     });
     const userContext=useContext(UserContext);
     const covoiturageContext=useContext(CovoiturageContext);
     formField.OwnerEmail=userContext.email;
+    formField.OwnerName=userContext.nom+" "+userContext.prenom;
     const navigate=useNavigate();
 
     <CovoiturageContext.Provider value={formField}>
